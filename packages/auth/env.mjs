@@ -3,8 +3,9 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    DISCORD_CLIENT_ID: z.string().min(1),
-    DISCORD_CLIENT_SECRET: z.string().min(1),
+    AUTHENTIK_CLIENT_ID: z.string().min(1),
+    AUTHENTIK_CLIENT_SECRET: z.string().min(1),
+    AUTHENTIK_BASE_URL: z.string().url(),
     NEXTAUTH_SECRET:
       process.env.NODE_ENV === "production"
         ? z.string().min(1)
@@ -21,8 +22,9 @@ export const env = createEnv({
   runtimeEnv: {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+    AUTHENTIK_BASE_URL: process.env.AUTHENTIK_BASE_URL,
+    AUTHENTIK_CLIENT_ID: process.env.AUTHENTIK_CLIENT_ID,
+    AUTHENTIK_CLIENT_SECRET: process.env.AUTHENTIK_CLIENT_SECRET,
   },
   skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION,
 });
